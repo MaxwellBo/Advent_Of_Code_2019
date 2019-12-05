@@ -5,7 +5,7 @@ import { RunnerArgs } from './day-0';
 
 interface InvokeArgs {
   day: number
-  using: (args: RunnerArgs) => any
+  using: (input: string, part: number) => any
   expecting: {
     part1: any,
     part2: any
@@ -15,8 +15,8 @@ interface InvokeArgs {
 function invoke({ day, using, expecting }: InvokeArgs) {
   const input = fs.readFileSync(`src/days/inputs/day${day}.txt`, "utf-8")
 
-  const part1 = using({ input, part: 1 })
-  const part2 = using({ input, part: 2 })
+  const part1 = using(input, 1)
+  const part2 = using(input, 2)
   expect(part1).toBe(expecting.part1)
   expect(part2).toBe(expecting.part2)
 

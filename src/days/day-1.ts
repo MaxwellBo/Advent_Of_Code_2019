@@ -1,7 +1,5 @@
 // https://adventofcode.com/2019/day/1
-import { RunnerArgs } from './day-0';
-
-export function day1({ input, part }: RunnerArgs) {
+export function day1(input: string, part: number) {
   const moduleMasses = input.trim().split("\n").map(xs => parseInt(xs))
 
   const fuel = (mass: number): number => {
@@ -14,7 +12,6 @@ export function day1({ input, part }: RunnerArgs) {
         : 0
   }
    
-  return moduleMasses // Part 1: 3497998, Part 2: 5243999
-    .map(fuel)
-    .reduce((a: number, b: number) => a + b, 0) 
+  // Part 1: 3497998, Part 2: 5243999
+  return moduleMasses.map(fuel).reduce((a: number, b: number) => a + b, 0)
 }
