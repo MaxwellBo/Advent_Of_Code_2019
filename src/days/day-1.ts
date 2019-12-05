@@ -1,10 +1,11 @@
 // https://adventofcode.com/2019/day/1
+// Part 1: 3497998, Part 2: 5243999
+
 import * as R from 'ramda';
 import { RunnerArgs } from './day-0';
 
 export function day1({ input, part }: RunnerArgs) {
   const moduleMasses = input.trim().split("\n").map(n => parseInt(n))
-
 
   const fuel = (mass: number): number => {
     const required = Math.floor(mass / 3) - 2
