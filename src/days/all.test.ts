@@ -14,9 +14,10 @@ interface InvokeArgs {
 
 function invoke({ day, using, expecting }: InvokeArgs) {
   const input = fs.readFileSync(`src/days/inputs/day${day}.txt`, "utf-8")
+  const split = input.trim().split("\n")
 
-  const part1 = using({ input, part: 1 })
-  const part2 = using({ input, part: 2 })
+  const part1 = using({ input, split, part: 1 })
+  const part2 = using({ input, split, part: 2 })
   expect(part1).toBe(expecting.part1)
   expect(part2).toBe(expecting.part2)
 
@@ -29,7 +30,7 @@ test('Day 1', () => {
       using: day1,
       expecting: {
         part1: 3497998,
-        part2: 5243999
+        part2: 5244112
       }
     }))
 });
