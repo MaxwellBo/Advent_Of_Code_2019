@@ -1,8 +1,8 @@
 // https://adventofcode.com/2019/day/1
 import { RunnerArgs } from './day-0';
 
-export function day1({ input, split, part }: RunnerArgs) {
-  const moduleMasses = split.map(xs => parseInt(xs))
+export function day1({ input, part }: RunnerArgs) {
+  const moduleMasses = input.trim().split("\n").map(xs => parseInt(xs))
 
   const fuel = (mass: number): number => {
     const required = Math.floor(mass / 3) - 2
