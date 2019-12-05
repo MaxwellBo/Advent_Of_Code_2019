@@ -1,6 +1,10 @@
 # Advent Of Code 2019
 
-## Running all days
+## Code
+
+- [src](https://github.com/MaxwellBo/Advent_Of_Code_2019/tree/master/src/days)
+
+## Running all non-visualised days
 
 `yarn test`
 
