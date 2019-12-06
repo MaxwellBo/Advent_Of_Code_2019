@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as R from 'ramda';
 import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
@@ -39,11 +40,10 @@ test('Day 1', () => {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// https://adventofcode.com/2019/day/2
-export function day2(input: string, part: number) {
-  const ops = input.trim().split(',').map(xs => parseInt(xs))
-  ops[1] = 12
-  ops[2] = 2
+export function computer(ops: number[], noun: number, verb: number) {
+  ops = [...ops]
+  ops[1] = noun
+  ops[2] = verb
 
   for (let ip = 0; ip < ops.length;) {
     if (ops[ip] === 1) {
@@ -62,12 +62,32 @@ export function day2(input: string, part: number) {
   return ops[0]
 }
 
+// https://adventofcode.com/2019/day/2
+export function day2(input: string, part: number) {
+  const ops = input.trim().split(',').map(xs => parseInt(xs))
+
+  if (part === 1) {
+    return computer(ops, 12, 2)
+  } else {
+
+    for (let noun = 1; noun < 99 + 1; noun++) {
+      for (let verb = 0; verb < 99 + 1; verb++) {
+        const fst = computer(ops, noun, verb)
+
+        if (fst === 19690720) {
+          return 100 * noun + verb
+        }
+      }
+    }
+  }
+}
+
 test('Day 2', () => {
   const input = fs.readFileSync('src/inputs/day2.txt', 'utf-8')
 
   const part1 = day2(input, 1)
   const part2 = day2(input, 2)
   expect(part1).toBe(4090701)
-  expect(part2).toBe(undefined)
+  expect(part2).toBe(6421)
   console.log({ part1, part2 })
 });
